@@ -1,0 +1,28 @@
+{block main}
+		<h2>Timesheet</h2>
+		[<a href="{link new $activeTask}">+ add new time</a>]
+		<div style="float: right;">
+		{form changeTask}
+			Task: {input task}
+		{/form changeTask}
+		</div>
+		<table class="highlight">
+			<thead>
+				<tr>
+					<td>Start</td>
+					<td>End</td>
+					<td>Duration</td>
+					<td>Tools</td>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr n:foreach="$times as $time" {if $iterator->even}class="even"{/if}>
+					<td>{$time['start_times']|date:'d.m.Y H:i'}</td>
+					<td>{$time['end_times']|date:'d.m.Y H:i'}</td>
+					<td>{$time['duration_times']|dayHourMinute}</td>
+					<td><a href="{link edit $time['id_times']}">edit</a> | <a href="{link delete!  $time['id_times']}" class="confirm">delete</a>{if isset($runningTime)&&$runningTime==$time['id_times']} | {$taskDuration} min <a href="{link endTask! $time['tasks_id_tasks'], $runningTime}">end work</a>{/if}</td>
+				</tr>
+			</tbody>
+		</table>          
+{/block}

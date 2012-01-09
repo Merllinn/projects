@@ -1,0 +1,103 @@
+{*
+ * @copyright  Copyright (c) 2011 Tomas Hubicka
+ * @package    Projects
+ *
+ * @param string   $basePath web base path
+ * @param string   $robots   tell robots how to index the content of a page (optional)
+ * @param array    $flashes  flash messages
+ *}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="{$basePath}/images/favicon.ico" />
+    <meta name="robots" content="{$robots}" n:ifset="$robots" />
+	<meta name="author" content="Tomáš Hubička" />
+	<title>Projects</title>
+    <link href="{$basePath}/css/index.css" rel="stylesheet" type="text/css" />
+    <link href="{$basePath}/css/flash.css" rel="stylesheet" type="text/css" />
+    <link href="{$basePath}/css/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="{$basePath}/css/jquery.tooltip.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{$basePath}/js/jquery.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/jquery-ui.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/jquery.nette.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/netteForms.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/jquery.ajaxform.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/jquery.tooltip.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/jquery-ui-timepicker.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/main.js"></script>
+</head>
+<body> 
+
+<div id="outer_wrapper">
+
+  <div id="wrapper">
+    
+   	<div id="header">
+        
+	        <div id="site_title">
+
+                <h1><a href="{link :Front:Dashboard:default}">
+                	Projects <span>More than just project tracking...</span>
+                </a></h1>
+
+            </div> <!-- end of site_title -->
+    
+            <!--
+            <div id="search_box">
+                <form action="#" method="get">
+                    <input type="text" value="Enter a keyword here..." name="q" size="10" id="searchfield" title="searchfield" onfocus="clearText(this)" onblur="clearText(this)" />
+                  	<input type="submit" name="Search" value="" alt="Search" id="search_button" title="Search" />
+                </form>
+            </div>
+            -->
+            
+    </div> <!-- end of header -->
+
+    <div id="menu">
+                
+            <ul>
+                <li><div class="icon dashboard"></div><a href="{link :Front:Dashboard:default}" class="current">Dashboard</a></li>
+                <li><div class="icon projects"></div><a href="{link :Front:Projects:default}">Projects</a></li>
+                <li><div class="icon tasks"></div><a href="{link :Front:Tasks:default}">Tasks</a></li>
+                <li><div class="icon time"></div><a href="{link :Front:Times:default}">Time tracking</a></li>
+                <li><div class="icon payments"></div><a href="#">Payments</a></li>
+                <li><div class="icon users"></div><a href="#">User management</a></li>
+          </ul>    	
+        
+      </div> <!-- end of menu -->
+      
+      <div>
+	    {snippet flashes}
+	        <div n:foreach="$flashes as $flash" class="flash fl-l {$flash->type}">{$flash->message}</div>
+	        {if isset($alert)}
+	            <script type="text/javascript">alert({$alert});</script>
+	        {/if}
+	    {/snippet}
+      </div> 
+      
+   	  <div id="main_top"></div>
+        <div id="main">
+
+	  		{block main}{/block}
+
+		</div><!-- end of main-->
+	  	
+        <div id="main_bottom"></div>
+   		
+        
+         <div id="footer">
+        
+       		Copyright © 2011 <a href="http://www.tomashubicka.cz">Merllinn</a> | Dashboard | <a href="/">Projects</a> | Tasks | Time | Payments | Users
+        
+        </div> <!-- end of footer -->
+    
+    </div> 
+	<!-- end of wrapper -->
+
+</div> <!-- end of outter wrapper -->
+
+</body>
+</html>

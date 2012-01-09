@@ -1,0 +1,15 @@
+div.flash {
+	border: 1px dashed gray;
+	padding: 0px 5px;
+	margin: 0 0;
+    position: relative;
+}
+div.info {
+    color: silver;
+}
+div.error {
+    color: red;
+}
+
+ul.errors {color: red; padding-left: 10px;}
+.errors li{list-style-type: none;}

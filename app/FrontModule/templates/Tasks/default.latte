@@ -1,0 +1,32 @@
+{block main}
+		<h2>Tasks</h2>
+		[<a href="{link new $activeProject}">+ add new task</a>]
+		<div style="float: right;">
+		{form changeProject}
+			Project: {input project}
+		{/form changeProject}
+		</div>
+		<table class="highlight">
+			<thead>
+				<tr>
+					<td>Name</td>
+					<td>Status</td>
+					<td>Created</td>
+					<td>Planned time</td>
+					<td>Done time</td>
+					<td>Tools</td>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr n:foreach="$tasks as $task" {if $iterator->even}class="even"{/if}>
+					<td>{$task['name_tasks']}</td>
+					<td>{$taskStatus[$task['status_tasks']]}</td>
+					<td>{$task['created_tasks']|date:'d.m.Y'}</td>
+					<td>{$task['estimate_tasks']|dayHourMinute}</td>
+					<td>{$task['done_tasks']|dayHourMinute}</td>
+					<td><a href="{link edit $task['id_tasks']}">edit</a> | <a href="{link delete!  $task['id_tasks']}" class="confirm">delete</a> | <a href="{link Times:default $task['id_tasks']}">timesheet</a>{if !isset($runningTask)} | <a href="{link startTask! $task['id_tasks']}">start work</a>{elseif $runningTask==$task['id_tasks']} | {$taskDuration} min <a href="{link endTask! $task['id_tasks'], $runningTime}">end work</a>{/if}</td>
+				</tr>
+			</tbody>
+		</table>          
+{/block}

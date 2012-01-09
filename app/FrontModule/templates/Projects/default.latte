@@ -1,0 +1,37 @@
+{block main}
+		<h2>Projects</h2>
+		[<a href="{link new}">+ add new project</a>]
+		<table class="highlight">
+			<thead>
+				<tr>
+					<td>Name</td>
+					<td>Status</td>
+					<td>Created</td>
+					<td>Started</td>
+					<td>Planned budget</td>
+					<td>Real price</td>
+					<td>Planned time</td>
+					<td>Done time</td>
+					<td>Planned<br />hour price</td>
+					<td>Real<br />hour price</td>
+					<td>Tools</td>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr n:foreach="$projects as $project" class="status{$project['status_projects']}">
+					<td>{$project['name_projects']}</td>
+					<td>{$projectStatus[$project['status_projects']]}</td>
+					<td>{$project['created_projects']|date:'d.m.Y'}</td>
+					<td>{$project['started_projects']|date:'d.m.Y'}</td>
+					<td>{$project['budget_projects']|number:2:',':' '}</td>
+					<td>{($project['done_projects']/60)*$project['hourprice_projects']|number:2:',':' '}</td>
+					<td>{$project['estimate_projects']|dayHourMinute}</td>
+					<td>{$project['done_projects']|dayHourMinute} ({$project['done_projects']/60|number:2:',':' '} h)</td>
+					<td>{$project['hourprice_projects']|number:2:',':' '}</td>
+					<td>{if $project['done_projects']>0}{$project['budget_projects'] / ($project['done_projects']/60) |number:2:',':' '}{/if}</td>
+					<td><a href="{link edit $project['id_projects']}">edit</a> | <a href="{link delete!  $project['id_projects']}" class="confirm">delete</a> | <a href="{link finish!  $project['id_projects']}" class="confirm">finish</a><br /><a href="{link Tasks:default $project['id_projects']}">tasks</a> | <a href="{link Tasks:new $project['id_projects']}">+ new task</a><br /><a href="{link close!  $project['id_projects']}" class="confirm">close</a></td>
+				</tr>
+			</tbody>
+		</table>          
+{/block}

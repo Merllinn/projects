@@ -1,0 +1,26 @@
+{block main}
+		<h2>Add new time</h2>
+		{form timeForm}   
+			{input id_times}     	
+			<table>
+				<tbody>
+					<tr>
+						<th>{label tasks_id_tasks /}</th>
+						<td>{input tasks_id_tasks}</td>
+					</tr>
+					<tr>
+						<th>{label start_date /}</th>
+						<td>{input start_date} {input start_time}</td>
+					</tr>
+					<tr>
+						<th>{label end_date /}</th>
+						<td>{input end_date} {input end_time}</td>
+					</tr>
+					<tr>
+						<th></th>
+						<td>{input submit}</td>
+					</tr>
+				</tbody>
+			</table>
+		{/form timeForm}        	
+{/block}
